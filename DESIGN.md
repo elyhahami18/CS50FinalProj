@@ -15,13 +15,16 @@ Our project utilizes the Flask web framework for handling HTTP requests and resp
 
 We define several routes and endpoints to handle different functionalities:
 
-- `/`: The home page, serving an HTML template.
-- `/process`: Computes the Gram-Schmidt process for a set of input vectors.
-- `/chat`: Utilizes the OpenAI API to provide a specialized chatbot for mathematical queries.
-- `/diagonalize`: Diagonalizes a square matrix.
-- `/signature`: Computes the determinant and trace of a square matrix.
-- `/svd`: Performs Singular Value Decomposition (SVD) on matrices.
+- `/`: The home page serves an HTML template, providing users with a user-friendly interface. 
+- `/process`: This endpoint handles POST requests for computing the Gram-Schmidt process on a set of input vectors. It extracts the number of vectors and their sizes from the request, validates the input, and meticulously applies the Gram-Schmidt process. The result, a list of orthonormalized vectors, is returned as a JSON response.
+- `/chat`: This endpoint empowers users to interact with a specialized chatbot. It accepts a user's message, initializes the OpenAI client using an API key (securely stored as an environment variable), and generates a response using my specefic fine-tuned OpenAI chat model. The response is thoughtfully returned as a JSON response.
+- `/diagonalize`: Responsible for diagonalizing square matrices, this endpoint starts by validating the input matrix's dimensions. Subsequently, it extracts the matrix data from the request and employs numpy to calculate the eigenvalues, eigenvectors, and the diagonal matrix. The results are meticulously returned in JSON format.
+- `/signature`: For square matrices, this endpoint adeptly computes both the determinant and trace. It follows a similar validation process, extracts the matrix data, and employs numpy to calculate these essential linear algebra properties. The results are meticulously returned in JSON format.
+- `/svd`: his versatile endpoint handles Singular Value Decomposition (SVD) for matrices, functioning seamlessly for both square and non-square matrices. It begins with dimension validation, matrix data extraction, and employs numpy to perform SVD. The results, including matrices U, S (singular values), and V^T (transpose of V), are returned in JSON format.
 
+## Index.html
+
+Bootstrap nav bar, JS for dynamic matrix dimension generation
 ### External Libraries
 
 We use several external libraries:
