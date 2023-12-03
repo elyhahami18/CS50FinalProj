@@ -14,4 +14,4 @@ Before running <Your App Name>, you need to have the following installed:
 ## Installation
 To get <Your App Name> up and running on your local machine, follow these steps:
 
-1. Clone the repository:
+1. Clone the repository: git clone <repository URL>
