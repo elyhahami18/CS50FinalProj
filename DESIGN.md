@@ -24,7 +24,8 @@ We define several routes and endpoints to handle different functionalities:
 
 ## Index.html
 
-Bootstrap nav bar, JS for dynamic matrix dimension generation
+While the aforementioned routes and endpoints handle the computational aspects, the index.html template serves as the digital gateway to our application. It features a Bootstrap navigation bar and leverages JavaScript to dynamically generate matrix dimensions—a user-centric feature that enhances usability and interaction.
+
 ### External Libraries
 
 We use several external libraries:
