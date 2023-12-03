@@ -4,6 +4,10 @@ This web application was created with Flask in November 2023 by Ely Hahami for H
 
 Lastly, inspired by David Malan's lecture on artificial intelligence and the current state of natural language processing, the last functionality is a specialized chatbot -- that is, a version of GPT 3.5 but fine-tuned on content from Sheldon Axler's well-regarded textbook "Linear Algebra Done Right." This means that users can ask complex questions about linear algebra and receive answers that are not only contextually accurate but also reflect the depth and pedagogical approach of Axler's work. Whether it's understanding the fundamentals of vector spaces, the subtleties of eigenvalues and eigenvectors, or the complexities of the spectral theorem or inner product spaces, the chatbot serves as an interactive tool that augments the learning experience.
 
+Web App Link: https://linearalgebra-3d3395b01e23.herokuapp.com/
+
+Youtube Video Link:
+
 ## Requirements
 Before running <the Linear Algebra Web App>, you need to have the following installed:
 - Python 3.7 or above
