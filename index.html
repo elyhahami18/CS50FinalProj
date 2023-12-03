@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Metadata for character set, viewport, and external CSS links -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/static/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title> Linear Algebra Web App</title>
+    </head>
+
+    <body>
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Navbar content placeholder -->
+        </nav>
+
+        <!-- Navigation tabs for different sections of the application -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <!-- Tab items like Home, Gram-Schmidt Calculation, Matrix Operations, etc. -->
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homeTab" role="tab" aria-controls="homeTab" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="gramSchmidt-tab" data-toggle="tab" href="#gramSchmidtTab" role="tab" aria-controls="gramSchmidtTab" aria-selected="false">Gram-Schmidt Calculation</a>
+            </li>
+            <!-- Matrix Operations Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="matrixOperationsDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Matrix Operations
+                </a>
+                <div class="dropdown-menu" aria-labelledby="matrixOperationsDropdown">
+                    <a class="dropdown-item" data-toggle="tab" id="matrixDiagonalization-tab" href="#matrixDiagonalizationTab" role="tab" aria-controls="matrixDiagonalizationTab">Matrix Diagonalization</a>
+                    <a class="dropdown-item" data-toggle="tab" id="matrixSignature-tab" href="#matrixSignatureTab" role="tab" aria-controls="matrixSignatureTab">Matrix Determinant and Trace</a>
+
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="svd-tab" data-toggle="tab" href="#svdTab" role="tab" aria-controls="svdTab" aria-selected="false">Singular Value Decomposition</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="chatGPT-tab" data-toggle="tab" href="#chatGPTTab" role="tab" aria-controls="chatGPTTab" aria-selected="false">Chat with Fine-Tuned GPT</a>
+            </li>
+        </ul>
+
+
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Home Tab Content -->
+            <div class="tab-pane fade show active" id="homeTab" role="tabpanel" aria-labelledby="home-tab">
+                <h1>Welcome to the Linear Algebra Web Application&trade;</h1>
+                <p>This web application was created with Flask in November 2023 by Ely Hahami for Harvard's CS 50 final project. Inspired by the fascinating linear algebra content
+                    in Math 25A (Theoretical Linear Algebra and Real Analysis I), this web app provides tools and functionalities
+                    to explore various concepts in linear algebra, including <a href="https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process" target="_blank">Gram-Schmidt Calculation</a>, <a href="https://en.wikipedia.org/wiki/Diagonalizable_matrix" target="_blank">Matrix Diagonalization</a>, <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank">Singular Value Decomposition (SVD)</a> and more.
+                </p>
+                <p>
+                    Lastly, inspired by David Malan's lecture on artificial intelligence and the current state of natural language processing,
+                    the last functionality is a specialized chatbot -- that is, a version of GPT 3.5 but fine-tuned on content from
+                    Sheldon Axler's well-regarded textbook <a href="https://link.springer.com/content/pdf/10.1007/978-3-031-41026-0.pdf" target="_blank">"Linear Algebra Done Right."</a> This means that users can ask complex questions about linear
+                    algebra and receive answers that are not only contextually accurate but also reflect the depth and pedagogical approach of Axler's work. Whether it's understanding the fundamentals of vector spaces, the subtleties of eigenvalues and eigenvectors, or the complexities of the spectral theorem or inner product spaces, the chatbot serves as an interactive tool that augments the learning experience.
+                </p>
+            </div>
+
+            <!-- Gram-Schmidt Calculation Tab -->
+            <div class="tab-pane fade" id="gramSchmidtTab">
+                <h1>Input Vectors</h1>
+                <form id="vectorForm" method="post" action="/process">
+                    <div>
+                        <label for="numberOfVectors">Number of Vectors:</label>
+                        <input type="number" id="numberOfVectors" name="numberOfVectors" min="1" max="10" value="2">
+                    </div>
+                    <div>
+                        <label for="sizeOfVectors">Size of Vectors:</label>
+                        <input type="number" id="sizeOfVectors" name="sizeOfVectors" min="1" value="2" max="10">
+                    </div>
+                    <div id="vectorInputs">
+                        <!-- Vector coordinate inputs will be added here -->
+                    </div>
+                    <button type="submit">Compute Orthonormal List</button>
+                </form>
+                <div id="messageDiv"></div>
+                <div id="result">
+                    <!-- Results will be shown here -->
+                </div>
+            </div>
+
+            <!-- Chat with GPT Tab -->
+            <div class="tab-pane fade" id="chatGPTTab">
+                <form id="chatForm" method="post" action="/chat">
+                    <div>
+                        <label for="message">Pose Your Question to the Linear-Algebra Enhanced GPT:</label>
+                        <input type="text" id="message" name="message" class="message-input">
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+                <div id="gptResponse">
+                    <!-- GPT Response will be shown here -->
+                </div>
+            </div>
+
+            <!-- Matrix Diagonalization Tab Content -->
+            <div class="tab-pane fade" id="matrixDiagonalizationTab">
+                <h1>Matrix Diagonalization</h1>
+                <form id="matrixForm" method="post" action="/diagonalize">
+                    <div>
+                        <label for="matrixSize">Matrix Size:</label>
+                        <input type="number" id="matrixSize" name="matrixSize" min="2" max="7" value="2">
+                    </div>
+                    <div id="matrixInputs">
+                        <!-- Matrix inputs will be added here -->
+                    </div>
+                    <button type="submit">Diagonalize Matrix</button>
+                </form>
+                <div id="matrixResult">
+                    <!-- Results will be shown here -->
+                </div>
+            </div>
+
+            <!-- Matrix Signature Tab Content -->
+            <div class="tab-pane fade" id="matrixSignatureTab">
+                <h1>Matrix Determinant and Trace</h1>
+                <form id="matrixSignatureForm">
+                    <div>
+                        <label for="signatureMatrixSize">Matrix Size:</label>
+                        <input type="number" id="signatureMatrixSize" name="matrixSize" min="2" max="7" value="2">
+                    </div>
+                    <div id="signatureMatrixInputs">
+                        <!-- Matrix inputs for Signature will be added here -->
+                    </div>
+                    <button type="submit">Compute Det(M) and Tr(M)</button>
+                </form>
+                <div id="signatureResult">
+                    <!-- Signature results will be shown here -->
+                </div>
+            </div>
+
+            <!-- SVD Tab Content -->
+            <div class="tab-pane fade" id="svdTab">
+                <h1>Singular Value Decomposition</h1>
+                <form id="svdForm">
+                    <div>
+                        <label for="svdMatrixRows">Number of Rows (m):</label>
+                        <input type="number" id="svdMatrixRows" name="matrixRows" min="2" max="7" value="2">
+                    </div>
+                    <div>
+                        <label for="svdMatrixCols">Number of Columns (n):</label>
+                        <input type="number" id="svdMatrixCols" name="matrixCols" min="2" max="7" value="2">
+                    </div>
+                    <div id="svdMatrixInputs">
+                        <!-- Matrix inputs for SVD will be added here -->
+                    </div>
+                    <button type="submit">Compute SVD</button>
+                </form>
+                <div id="svdResult">
+                    <!-- SVD results will be shown here -->
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- JavaScript for dynamic form handling and interaction -->
+        <script>
+            // Define a function to dynamically generate input fields for vectors
+            function generateVectorInputs() {
+                // Get the number of vectors and their size from respective input fields
+                const numberOfVectors = document.getElementById('numberOfVectors').value;
+                const sizeOfVectors = document.getElementById('sizeOfVectors').value;
+                const vectorInputsDiv = document.getElementById("vectorInputs");
+
+                // Clear any existing content in the div
+                vectorInputsDiv.innerHTML = '';
+
+                // Loop through the number of vectors to create input fields for each
+                for (let i = 0; i < numberOfVectors; i++) {
+                    // Create a div element to label each vector
+                    const vectorLabel = document.createElement("div");
+                    vectorLabel.className = "vector-label";
+                    // Label like Vector v_1, v_2, etc.
+                    vectorLabel.innerText = `Vector v_{${i + 1}}:`;
+                    vectorInputsDiv.appendChild(vectorLabel);
+
+                    // Create input fields for each coordinate of the vector
+                    for (let j = 0; j < sizeOfVectors; j++) {
+                        // Create a text input for each coordinate
+                        const coordinateInput = document.createElement("input");
+                        coordinateInput.type = "text";
+                        coordinateInput.className = "vector-input";
+                        coordinateInput.name = `vector${i + 1}[${j}]`;
+                        // Placeholder text for user guidance
+                        coordinateInput.placeholder = `Coordinate ${j + 1}`;
+
+                        // Append each coordinate input to the vector inputs div
+                        vectorInputsDiv.appendChild(coordinateInput);
+                    }
+                }
+            }
+            // Add an event listener for a change in the 'numberOfVectors' input field.
+            // When the value changes, the 'generateVectorInputs' function is called.
+            document.getElementById('numberOfVectors').addEventListener('change', generateVectorInputs);
+
+            // Add an event listener for a change in the 'sizeOfVectors' input field.
+            // Similar to above, this also triggers 'generateVectorInputs' when the value changes.
+            document.getElementById('sizeOfVectors').addEventListener('change', generateVectorInputs);
+            document.getElementById("vectorForm").onsubmit = function(event) {
+                // Prevent the default form submission behavior.
+                event.preventDefault();
+                const formData = new FormData(this);
+                fetch('/process', {
+                        // Send a POST request to the '/process' endpoint with the form data.
+                    method: 'POST',
+                    body: formData
+                        // Parse the JSON response.
+                }).then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            // Handle error
+                            document.getElementById('result').innerText = data.error;
+                        } else {
+                            // If successful, display a success message and the resulting data.
+                            // The orthonormal vectors are converted to a string for display.
+                            document.getElementById('result').innerText = data.message + '\n' + JSON.stringify(data.orthonormal_vectors);
+                        }
+                    }).catch(error => {
+                        document.getElementById('result').innerText = 'Error: ' + error;
+                    });
+            };
+            // Initial call to generate the vector input fields when the script first runs.
+            generateVectorInputs();
+        </script>
+
+        <script>
+            // Function to dynamically generate matrix inputs
+            function generateMatrixInputs(matrixSizeElementId, matrixInputsDivId) {
+                // Retrieve the size of the matrix from the specified input element
+                const matrixSize = document.getElementById(matrixSizeElementId).value;
+                const matrixInputsDiv = document.getElementById(matrixInputsDivId);
+                matrixInputsDiv.innerHTML = '';
+                // Loop to create input fields for each element of the matrix
+                for (let i = 0; i < matrixSize; i++) {
+                    for (let j = 0; j < matrixSize; j++) {
+                        // Create a text input for each matrix element
+                        const input = document.createElement("input");
+                        input.type = "text";
+                        input.className = "matrix-input";
+                        // Name the input for easy identification
+                        input.name = `matrix[${i}][${j}]`;
+                        // Placeholder for user clarity
+                        input.placeholder = `M[${i + 1}][${j + 1}]`;
+                        matrixInputsDiv.appendChild(input);
+                    }
+                    // Add a line break after each row of inputs for better layout
+                    matrixInputsDiv.appendChild(document.createElement("br"));
+                }
+            }
+
+            // Event listener for dynamic matrix input generation
+            document.getElementById('matrixSize').addEventListener('change', function() {
+                generateMatrixInputs('matrixSize', 'matrixInputs');
+            });
+            document.getElementById('signatureMatrixSize').addEventListener('change', function() {
+                generateMatrixInputs('signatureMatrixSize', 'signatureMatrixInputs');
+            });
+
+            // Initial call to populate matrix inputs
+            generateMatrixInputs('matrixSize', 'matrixInputs');
+            generateMatrixInputs('signatureMatrixSize', 'signatureMatrixInputs');
+
+            // Function to handle matrix form submissions
+            function handleMatrixFormSubmission(event, endpoint, resultDivId) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                // Send a POST request to the specified endpoint with the form data
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            // Display error message if there is an error in the response
+                            document.getElementById(resultDivId).innerText = data.error;
+                        } else {
+                            // If successful, format and display the result
+                            document.getElementById(resultDivId).innerHTML = formatMatrixResult(data);
+                        }
+                    }).catch(error => {
+                        document.getElementById(resultDivId).innerText = 'Error: ' + error;
+                    });
+            }
+
+            // Function to format matrix result
+            function formatMatrixResult(data) {
+                if (data.original_matrix) { // For diagonalization
+                    return formatDiagonalizationResult(data);
+                } else { // For determinant and trace
+                    return `
+            <h3>Det(M) and Tr(M) Results</h3>
+            <p><strong>Trace:</strong> ${data.trace}</p>
+            <p><strong>Determinant:</strong> ${data.determinant}</p>
+            <p><strong>Note:</strong> The trace of a square matrix is defined to be the sum of the matrix's diagonal entries. The determinant and its properties are slightly more complicated. For simplicity sake, think of the determinant as a scalar value that is a function of the entries of a square matrix </p>`;
+                }
+            }
+
+            // Function to format diagonalization result
+            function formatDiagonalizationResult(data) {
+                return `<h3>Matrix Diagonalization Results</h3>
+                    <h4>Original Matrix (A):</h4> ${matrixToHTML(data.original_matrix)}
+                    <h4>Matrix P (Eigenvectors):</h4> ${matrixToHTML(data.eigenvectors)}
+                    <h4>Matrix D (Diagonal Matrix):</h4> ${matrixToHTML(data.diagonal_matrix)}
+                    <h4>Matrix P<sup>-1</sup> (Inverse of P):</h4> ${matrixToHTML(data.inverse_of_P)}
+                    <h4>Reconstructed Matrix (PDP<sup>-1</sup>):</h4> ${matrixToHTML(data.reconstructed_matrix)}
+                    <p><strong>Note:</strong> The original matrix <em>A</em> can be reconstructed as <em>A = PDP<sup>-1</sup></em>, where <em>P</em> is the matrix of eigenvectors and <em>D</em> is the diagonal matrix of eigenvalues.</p>`;
+            }
+
+            // Function to convert matrix data to HTML table
+            function matrixToHTML(matrix) {
+                return '<table>' + matrix.map(row => '<tr>' + row.map(item => `<td>${item.toFixed(2)}</td>`).join('') + '</tr>').join('') + '</table>';
+            }
+
+            // Event listeners for form submissions
+            document.getElementById('matrixForm').onsubmit = function(event) {
+                // Handle the matrix form submission for diagonalization
+                handleMatrixFormSubmission(event, '/diagonalize', 'matrixResult');
+            };
+            document.getElementById('matrixSignatureForm').onsubmit = function(event) {
+                // Handle the matrix signature form submission
+                handleMatrixFormSubmission(event, '/signature', 'signatureResult');
+            };
+        </script>
+
+
+        <script>
+            // Add event listeners to the SVD matrix row and column input fields
+            document.getElementById('svdMatrixRows').addEventListener('change', generateSVDMatrixInputs);
+            document.getElementById('svdMatrixCols').addEventListener('change', generateSVDMatrixInputs);
+
+            // Function to dynamically generate SVD matrix input fields based on row and column numbers
+            function generateSVDMatrixInputs() {
+                // Get the number of rows and columns from the input fields
+                const rows = document.getElementById('svdMatrixRows').value;
+                const cols = document.getElementById('svdMatrixCols').value;
+                const matrixInputsDiv = document.getElementById("svdMatrixInputs");
+                matrixInputsDiv.innerHTML = '';
+
+                // Loop to create input fields for each matrix element
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        const input = document.createElement("input");
+                        input.type = "text";
+                        // Assign a class for styling
+                        input.className = "matrix-input";
+                        // Name the input for easy retrieval
+                        input.name = `matrix[${i}][${j}]`;
+                        // Set placeholder text indicating matrix position
+                        input.placeholder = `M[${i + 1}][${j + 1}]`;
+                        matrixInputsDiv.appendChild(input);
+                    }
+                    // Add a line break after each row for visual structure
+                    matrixInputsDiv.appendChild(document.createElement("br"));
+                }
+            }
+
+            // Event listener for the SVD form submission
+            document.getElementById('svdForm').onsubmit = function(event) {
+                // Prevent the default form submission action
+                event.preventDefault();
+                const formData = new FormData(this);
+                fetch('/svd', {
+                    // Send a POST request to the server at the '/svd' endpoint with the form data
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('SVD computation failed. Please check your input.');
+                    }
+                    return response.json();
+                }).then(data => {
+                    // Retrieve the div element where the results will be displayed
+                    const resultDiv = document.getElementById('svdResult');
+                    // Set the HTML content of the resultDiv with the SVD results
+                    // including the U matrix, singular values, and V^T matrix
+                    resultDiv.innerHTML = '<h3>SVD Results</h3>';
+                    resultDiv.innerHTML += '<h4>Matrix U:</h4>' + matrixToHTML(data.U_matrix);
+                    resultDiv.innerHTML += '<h4>Singular Values:</h4>' + '<p>' + data.S_values.join(', ') + '</p>';
+                    resultDiv.innerHTML += '<h4>Matrix V<sup>T</sup>:</h4>' + matrixToHTML(data.VT_matrix);
+                    // Add a note explaining the SVD concept and the nature of the matrices involved
+                    resultDiv.innerHTML += '<p><strong>Note:</strong> In Singular Value Decomposition, a matrix is decomposed into three matrices: an orthogonal matrix U, Σ (Sigma, containing singular values), and an orthogonal matrix V<sup>T</sup> (transpose of V). The original matrix can be reconstructed by multiplying U, Σ, and V. It should be noted that an orthogonal matrix has orthonormal column vectors -- that is, each column vector is mutually orthogonal to the others and has unit length. <sup>T</sup>.</p>';
+
+
+                }).catch(error => {
+                    // If there is an error during the fetch or processing, display the error message
+                    document.getElementById('svdResult').innerText = 'Error: ' + error.message;
+                });
+            };
+            generateSVDMatrixInputs();
+        </script>
+
+        <script>
+            // Add an event listener to the 'submit' event on the element with the ID 'chatForm'
+            document.getElementById('chatForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(this);
+                // Send an HTTP POST request to the '/chat' endpoint with the form data
+                fetch('/chat', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                    .then(data => {
+                        // Update the gptResponse div with the response
+                        document.getElementById('gptResponse').innerText = data.response;
+                    }).catch(error => {
+                        // Handle any errors
+                        document.getElementById('gptResponse').innerText = 'Error: ' + error.message;
+                    });
+            });
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+
+
+    </body>
+
+</html>
