@@ -27,7 +27,12 @@ Before starting the application, configure the necessary environment variables:
 1. Create a `.env` file in the project root directory.
 2. Add the following lines, replacing `<API_KEY>` with your actual API key:
 
+## API Key Restriction
+Please note that the chatbot feature in the source code requires an OpenAI API key, which is not included in the project repository for security reasons. Consequently, you will not be able to use the chatbot feature in your local setup without an API key.
 
+However, you can interact with the chatbot in the deployed version of the application on Heroku, where the API key has been securely configured. We ensure the security of the API key using environment variables and do not expose it within the source code.
+
+If you wish to use the chatbot feature locally, you will need to obtain your own API key from OpenAI and set it as an environment variable in your `.env` file as described in the Configuration section below.
 
 ## Running the Application
 To run <the Linear Algebra Web App> locally, execute the following command: flask run
