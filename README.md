@@ -13,7 +13,7 @@ Before running <the Linear Algebra Web App>, you need to have the following inst
 ## Installation
 To get <The Linear Algebra Web App> up and running on your local machine, follow these steps using VSCODE IDE:
 
-1. Clone the repository: <git clone <https://github.com/elyhahami18/CS50FinalProj.git>>
+1. Clone the repository: git clone <https://github.com/elyhahami18/CS50FinalProj.git>
 
 2. Navigate to the project directory: cd CS50FinalProj
 
