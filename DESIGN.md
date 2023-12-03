@@ -7,7 +7,7 @@ This document provides a technical overview of our project, a Flask-based web ap
 
 ## Core Components
 
-### Flask Application
+### Flask Application (App.py)
 
 Our project utilizes the Flask web framework for handling HTTP requests and responses. Flask's simplicity and flexibility make it an ideal choice for building a lightweight web application.
 
