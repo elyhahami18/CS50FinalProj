@@ -22,9 +22,27 @@ We define several routes and endpoints to handle different functionalities:
 - `/signature`: For square matrices, this endpoint adeptly computes both the determinant and trace. It follows a similar validation process, extracts the matrix data, and employs numpy to calculate these essential linear algebra properties. The results are meticulously returned in JSON format.
 - `/svd`: his versatile endpoint handles Singular Value Decomposition (SVD) for matrices, functioning seamlessly for both square and non-square matrices. It begins with dimension validation, matrix data extraction, and employs numpy to perform SVD. The results, including matrices U, S (singular values), and V^T (transpose of V), are returned in JSON format.
 
-## Index.html
+### Index.html
 
-While the aforementioned routes and endpoints handle the computational aspects, the index.html template serves as the digital gateway to our application. It features a Bootstrap navigation bar and leverages JavaScript to dynamically generate matrix dimensions—a user-centric feature that enhances usability and interaction.
+The index.html file serves as the front-end interface for our Linear Algebra Web Application. In this design document, I will provide an overview of how we implemented the project and the reasoning behind the design decisions made for this HTML file.
+
+1. Structured Tabs for User Interaction: The core design decision behind our user interface was to organize the application into tabs. Each tab corresponds to a specific mathematical operation or feature, such as Gram-Schmidt calculation, Matrix Diagonalization, Singular Value Decomposition (SVD), and a specialized chatbot. This tab-based structure makes it intuitive for users to navigate the application and access the functionality they need. It also keeps the user interface clean and uncluttered.
+
+2. Dynamically Generated Input Forms: We implemented JavaScript functions to dynamically generate input forms based on user input. For instance, in the Gram-Schmidt Calculation tab, users can specify the number of vectors and their size. The JavaScript function generateVectorInputs then generates the appropriate number of input fields for vector coordinates. This dynamic form generation simplifies the user experience, as users only see the necessary input fields, and it ensures that the input corresponds to the user's selection.
+
+3. Consistency in Input Forms: Across all tabs that involve matrix or vector input, we maintain consistency in the design of input forms. Each input form includes fields to specify the size or dimensions of the matrix or vector and dynamically generated input fields for the matrix or vector elements. This consistency enhances user familiarity and reduces the learning curve when switching between different mathematical operations.
+
+4. Real-Time Result Display: For each mathematical operation, we provide a designated div (e.g., "result," "matrixResult," "signatureResult," "svdResult") to display the results or messages. JavaScript functions handle form submissions, communicate with the server to perform calculations, and then update the respective result div with the computed results or error messages in real-time. This real-time feedback enhances the user experience and provides immediate feedback on the calculations performed.
+
+5. Use of Bootstrap for Responsive Design: We utilize Bootstrap for styling and responsive design. Bootstrap's pre-built components ensure that our web application is mobile-friendly and visually appealing. It also provides consistency in design elements, such as the navigation bar and tabs.
+
+
+
+
+
+
+
+
 
 ### External Libraries
 
