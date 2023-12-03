@@ -2,7 +2,8 @@
 
 ## Overview
 
-This document provides a technical overview of our project, a Flask-based web application that offers various linear algebra computations and includes a specialized chatbot for mathematical inquiries. We'll discuss the core components, design decisions, and the rationale behind them.
+This document provides a technical overview of our project, a Flask-based web application (https://linearalgebra-3d3395b01e23.herokuapp.com/
+) that offers various linear algebra computations and includes a specialized chatbot for mathematical inquiries. We'll discuss the core components, design decisions, and the rationale behind them.
 
 ## Core Components
 
