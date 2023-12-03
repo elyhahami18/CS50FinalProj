@@ -40,6 +40,7 @@ We have a `helpers.py` module that contains functions for:
 - Performing matrix diagonalization.
 - Computing determinant, trace, and SVD.
 
+Since many routes (such as `/diagonalize`, `/signature`, and `/svd`) need matrix input validation, we thought it was best design to abstract a singular matrix dimension validation function in helpers.py was used multiple times in app.py rather than copying and pasting code -- which we learned was bad practice. 
 ## Design Decisions
 
 ### Separation of Concerns
