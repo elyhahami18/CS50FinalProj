@@ -28,10 +28,13 @@ Before starting the application, configure the necessary environment variables:
 2. Add the following lines, replacing `<API_KEY>` with your actual API key:
 
 
+
 ## Running the Application
 To run <the Linear Algebra Web App> locally, execute the following command: flask run
+The application will be available at `http://127.0.0.1:5000/` by default.
 Alternatively, you may view and interact with the web app here <https://linearalgebra-3d3395b01e23.herokuapp.com/>, thanks to deployment on Heroku. 
 
-
+## Support
+Should you need further assistance, please reach out to me at `elyhahami@college.harvard.edu`.
 
 
