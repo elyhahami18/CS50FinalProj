@@ -8,7 +8,7 @@ Lastly, inspired by David Malan's lecture on artificial intelligence and the cur
 Before running <the Linear Algebra Web App>, you need to have the following installed:
 - Python 3.7 or above
 - Flask
-- Other dependencies listed in `requirements.txt`
+- Other dependencies listed in `requirements.txt` -- namely, numpy, dotenv, and openai. 
 
 ## Installation
 To get <The Linear Algebra Web App> up and running on your local machine, follow these steps using VSCODE IDE:
