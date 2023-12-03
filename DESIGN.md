@@ -42,6 +42,7 @@ We have a `helpers.py` module that contains functions for:
 
 Since many routes (such as `/diagonalize`, `/signature`, and `/svd`) need matrix input validation, we thought it was best design to abstract a singular matrix dimension validation function in helpers.py was used multiple times in app.py rather than copying and pasting code -- which we learned was bad practice. 
 ## Design Decisions
+Here is a screenshot of how we fine-tuned GPT-3.5. I hand-picked and curated training data (that can be viewed in finetuning.jsonl) that can be thought of a prompt as input and desired response as output. Here is a screenshot from OpenAI playground that displays the decreasing training loss of our fine-tuned model:
 <img width="1512" alt="Screenshot 2023-12-03 at 3 06 23 PM" src="https://github.com/elyhahami18/CS50FinalProj/assets/130234343/65cce9c8-ed13-435a-99af-c1cfeb38ffb9">
 
 ### Separation of Concerns
