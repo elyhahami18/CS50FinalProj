@@ -11,7 +11,7 @@ Before running <the Linear Algebra Web App>, you need to have the following inst
 - Other dependencies listed in `requirements.txt` -- namely, numpy, dotenv, and openai. 
 
 ## Installation
-To get <The Linear Algebra Web App> up and running on your local machine, follow these steps using VSCODE IDE:
+To get the Linear Algebra Web App up and running on your local machine, follow these steps using Visual Studio Code (VSCode):
 
 1. Clone the repository: git clone <https://github.com/elyhahami18/CS50FinalProj.git>
 
@@ -34,7 +34,8 @@ However, you can interact with the chatbot in the deployed version of the applic
 If you wish to use the chatbot feature locally, you will need to obtain your own API key from OpenAI and set it as an environment variable in your `.env` file as described in the Configuration section below.
 
 ## Running the Application
-To run <the Linear Algebra Web App> locally, execute the following command: flask run
+To run <the Linear Algebra Web App> locally, execute flask run. 
+
 The application will be available at `http://127.0.0.1:5000/` by default.
 Alternatively, you may view and interact with the web app here <https://linearalgebra-3d3395b01e23.herokuapp.com/>, thanks to deployment on Heroku. 
 
