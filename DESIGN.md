@@ -36,12 +36,11 @@ The index.html file serves as the front-end interface for our Linear Algebra Web
 
 5. Use of Bootstrap for Responsive Design: We utilize Bootstrap for styling and responsive design. Bootstrap's pre-built components ensure that our web application is mobile-friendly and visually appealing. It also provides consistency in design elements, such as the navigation bar and tabs.
 
+6. Server-Side Validation: Input Data Validation: One of the primary focuses of server-side validation is to ensure that the data submitted by users through forms or API requests is valid and meets the required criteria. In our application, we perform input data validation for various mathematical operations, including Gram-Schmidt calculation, matrix diagonalization, matrix determinant and trace calculation, and SVD. 
 
+We have dedicated validation functions for each mathematical operation in our Flask-based server application. These functions check input data for criteria such as matrix size, vector dimensions, data types, and value ranges. For example, in the Gram-Schmidt calculation, we validate that the input vectors are of the correct size and are numerical. Even if the user 'inspects' the web page and tries to change the minimum, maximum, or type allowed for the 'number of vectors' field, the computation will not execute and provide an error message to the user. Inspired by this type of error-handling in Finance, this kind of server-side validation is good design. 
 
-
-
-
-
+Lastly, when input data doesn't pass validation, we generate meaningful error messages that explain to users what went wrong. These messages are designed to be user-friendly and guide users on how to correct their input. For example, if a user tries to calculate the Gram-Schmidt process with non-numeric input, they will receive an error message explaining the need for numerical input. If they try to diagonlize a square matrix with too large of a dimension, then they will recieve an error message explaining that the issue lies specifically with the dimension of their input.  
 
 
 ### External Libraries
