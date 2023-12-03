@@ -15,7 +15,7 @@ Our project utilizes the Flask web framework for handling HTTP requests and resp
 
 We define several routes and endpoints to handle different functionalities:
 
-- `/`: The home page serves an HTML template, providing users with a user-friendly interface. 
+- `/`: The home page serves an HTML template, providing users with a user-friendly interface and background information about the web app. 
 - `/process`: This endpoint handles POST requests for computing the Gram-Schmidt process on a set of input vectors. It extracts the number of vectors and their sizes from the request, validates the input, and meticulously applies the Gram-Schmidt process. The result, a list of orthonormalized vectors, is returned as a JSON response.
 - `/chat`: This endpoint empowers users to interact with a specialized chatbot. It accepts a user's message, initializes the OpenAI client using an API key (securely stored as an environment variable), and generates a response using my specefic fine-tuned OpenAI chat model. The response is thoughtfully returned as a JSON response.
 - `/diagonalize`: Responsible for diagonalizing square matrices, this endpoint starts by validating the input matrix's dimensions. Subsequently, it extracts the matrix data from the request and employs numpy to calculate the eigenvalues, eigenvectors, and the diagonal matrix. The results are meticulously returned in JSON format.
