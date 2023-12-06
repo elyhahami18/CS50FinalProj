@@ -7,7 +7,7 @@ Lastly, inspired by David Malan's lecture on artificial intelligence and the cur
 
 Web App Link: https://linearalgebra-3d3395b01e23.herokuapp.com/
 
-Youtube Video Link: https://youtu.be/qw51oU-4aRI
+Youtube Video Link: [https://youtu.be/qw51oU-4aRI](https://www.youtube.com/watch?v=qw51oU-4aRI)
 
 ## Requirements
 Before running <the Linear Algebra Web App>, you need to have the following installed:
