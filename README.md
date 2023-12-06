@@ -1,4 +1,5 @@
 # CS50FinalProj
+Link to code files publicly accessible on github: https://github.com/elyhahami18/CS50FinalProj
 ## Introduction
 This web application was created with Flask in November 2023 by Ely Hahami for Harvard's CS 50 final project. Inspired by the fascinating linear algebra content in Math 25A (Theoretical Linear Algebra and Real Analysis I), this web app provides tools and functionalities to explore various concepts in linear algebra, including Gram-Schmidt Calculation, Matrix Diagonalization, Singular Value Decomposition (SVD) and more.
 
